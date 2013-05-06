@@ -1,0 +1,1009 @@
+<?xml version='1.0'?>
+<signatures version='1.0'>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordDefaultStoreFileName'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordDidMergeChangesFromiCloudNotification'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportAttributeKeyMapKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportAttributeValueClassNameKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportCustomDateFormatKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportDefaultDateFormatString'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportRelationshipLinkedByKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportRelationshipMapKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordImportRelationshipTypeKey'/>
+<constant declared_type='NSString*' const='true' type='@' name='kMagicalRecordPSCDidCompleteiCloudSetupNotification'/>
+<enum value='1' name='MRSaveParentContexts'/>
+<enum value='2' name='MRSaveSynchronously'/>
+<enum value='0' name='MR_ENABLE_ACTIVE_RECORD_LOGGING'/>
+<enum value='20' name='kMagicalRecordDefaultBatchSize'/>
+<function name='UIColorFromString'>
+<arg declared_type='NSString*' type='@' name='serializedColor'/>
+<retval declared_type='UIColor*' type='@'/>
+</function>
+<function name='adjustDateForDST'>
+<arg declared_type='NSDate*' type='@' name='date'/>
+<retval declared_type='NSDate*' type='@'/>
+</function>
+<function name='attributeNameFromString'>
+<arg declared_type='NSString*' type='@' name='value'/>
+<retval declared_type='NSString*' type='@'/>
+</function>
+<function name='dateFromString'>
+<arg declared_type='NSString*' type='@' name='value'/>
+<arg declared_type='NSString*' type='@' name='format'/>
+<retval declared_type='NSDate*' type='@'/>
+</function>
+<function name='primaryKeyNameFromString'>
+<arg declared_type='NSString*' type='@' name='value'/>
+<retval declared_type='NSString*' type='@'/>
+</function>
+<class name='MagicalRecord'>
+<method class_method='true' selector='cleanUp'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='currentStack'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='defaultStoreName'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='errorHandlerAction'>
+<retval declared_type='SEL' type=':'/>
+</method>
+<method class_method='true' selector='errorHandlerTarget'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='handleErrors:'>
+<arg declared_type='NSError*' type='@' index='0' name='error'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='handleErrors:'>
+<arg declared_type='NSError*' type='@' index='0' name='error'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='isICloudEnabled'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='saveInBackgroundUsingCurrentContextWithBlock:completion:errorHandler:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='1' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='2' name='errorHandler'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveInBackgroundWithBlock:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveInBackgroundWithBlock:completion:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='1' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveUsingCurrentThreadContextWithBlock:completion:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='MRSaveCompletionHandler' type='@?' function_pointer='true' index='1' name='completion'>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveUsingCurrentThreadContextWithBlockAndWait:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveWithBlock:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveWithBlock:completion:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='MRSaveCompletionHandler' type='@?' function_pointer='true' index='1' name='completion'>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='saveWithBlockAndWait:'>
+<arg declared_type='void (^)(NSManagedObjectContext *)' type='@?' function_pointer='true' index='0' name='block'>
+<arg declared_type='NSManagedObjectContext*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setDefaultModelFromClass:'>
+<arg declared_type='Class' type='#' index='0' name='klass'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setDefaultModelNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='modelName'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setErrorHandlerTarget:action:'>
+<arg declared_type='id' type='@' index='0' name='target'/>
+<arg declared_type='SEL' type=':' index='1' name='action'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setShouldAutoCreateDefaultPersistentStoreCoordinator:'>
+<arg declared_type='BOOL' type='B' index='0' name='shouldAutoCreate'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setShouldAutoCreateManagedObjectModel:'>
+<arg declared_type='BOOL' type='B' index='0' name='shouldAutoCreate'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setShouldDeleteStoreOnModelMismatch:'>
+<arg declared_type='BOOL' type='B' index='0' name='shouldDeleteStoreOnModelMismatch'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupAutoMigratingCoreDataStack'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStack'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithAutoMigratingSqliteStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeName'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithInMemoryStore'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeName'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithiCloudContainer:contentNameKey:localStoreNamed:cloudStorePathComponent:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='pathSubcomponent'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithiCloudContainer:contentNameKey:localStoreNamed:cloudStorePathComponent:completion:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='pathSubcomponent'/>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='4' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='setupCoreDataStackWithiCloudContainer:localStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='icloudBucket'/>
+<arg declared_type='NSString*' type='@' index='1' name='localStore'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='shouldAutoCreateDefaultPersistentStoreCoordinator'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='shouldAutoCreateManagedObjectModel'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='shouldDeleteStoreOnModelMismatch'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+</class>
+<class name='NSAttributeDescription'>
+<method selector='MR_primaryKey'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='MR_valueForKeyPath:fromObjectData:'>
+<arg declared_type='NSString*' type='@' index='0' name='keyPath'/>
+<arg declared_type='id' type='@' index='1' name='objectData'/>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='NSEntityDescription'>
+<method selector='MR_createInstanceInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSManagedObject*' type='@'/>
+</method>
+<method selector='MR_primaryAttributeToRelateBy'>
+<retval declared_type='NSAttributeDescription*' type='@'/>
+</method>
+</class>
+<class name='NSManagedObject'>
+<method class_method='true' selector='MR_aggregateOperation:onAttribute:withPredicate:'>
+<arg declared_type='NSString*' type='@' index='0' name='function'/>
+<arg declared_type='NSString*' type='@' index='1' name='attributeName'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='predicate'/>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method class_method='true' selector='MR_aggregateOperation:onAttribute:withPredicate:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='function'/>
+<arg declared_type='NSString*' type='@' index='1' name='attributeName'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='predicate'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='3' name='context'/>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method class_method='true' selector='MR_ascendingSortDescriptors:'>
+<arg declared_type='NSArray*' type='@' index='0' name='attributesToSortBy'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_countOfEntities'>
+<retval declared_type='NSUInteger' type='I'/>
+</method>
+<method class_method='true' selector='MR_countOfEntitiesWithContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSUInteger' type='I'/>
+</method>
+<method class_method='true' selector='MR_countOfEntitiesWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchFilter'/>
+<retval declared_type='NSUInteger' type='I'/>
+</method>
+<method class_method='true' selector='MR_countOfEntitiesWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchFilter'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSUInteger' type='I'/>
+</method>
+<method class_method='true' selector='MR_createEntity'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_createFetchRequest'>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_createFetchRequestInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_createInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_defaultBatchSize'>
+<retval declared_type='NSUInteger' type='I'/>
+</method>
+<method class_method='true' selector='MR_deleteAllMatchingPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='predicate'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='MR_deleteAllMatchingPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='predicate'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='MR_deleteEntity'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='MR_deleteInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='MR_descendingSortDescriptors:'>
+<arg declared_type='NSArray*' type='@' index='0' name='attributesToSortBy'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_entityDescription'>
+<retval declared_type='NSEntityDescription*' type='@'/>
+</method>
+<method class_method='true' selector='MR_entityDescriptionInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSEntityDescription*' type='@'/>
+</method>
+<method class_method='true' selector='MR_executeFetchRequest:'>
+<arg declared_type='NSFetchRequest*' type='@' index='0' name='request'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_executeFetchRequest:inContext:'>
+<arg declared_type='NSFetchRequest*' type='@' index='0' name='request'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_executeFetchRequestAndReturnFirstObject:'>
+<arg declared_type='NSFetchRequest*' type='@' index='0' name='request'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_executeFetchRequestAndReturnFirstObject:inContext:'>
+<arg declared_type='NSFetchRequest*' type='@' index='0' name='request'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllGroupedBy:withPredicate:sortedBy:ascending:'>
+<arg declared_type='NSString*' type='@' index='0' name='group'/>
+<arg declared_type='NSPredicate*' type='@' index='1' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllGroupedBy:withPredicate:sortedBy:ascending:delegate:'>
+<arg declared_type='NSString*' type='@' index='0' name='group'/>
+<arg declared_type='NSPredicate*' type='@' index='1' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<arg declared_type='id' type='@' index='4' name='delegate'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllGroupedBy:withPredicate:sortedBy:ascending:delegate:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='group'/>
+<arg declared_type='NSPredicate*' type='@' index='1' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<arg declared_type='id' type='@' index='4' name='delegate'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='5' name='context'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllGroupedBy:withPredicate:sortedBy:ascending:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='group'/>
+<arg declared_type='NSPredicate*' type='@' index='1' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='4' name='context'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllSortedBy:ascending:withPredicate:groupBy:delegate:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='3' name='groupingKeyPath'/>
+<arg declared_type='id' type='@' index='4' name='delegate'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllSortedBy:ascending:withPredicate:groupBy:delegate:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='3' name='groupingKeyPath'/>
+<arg declared_type='id' type='@' index='4' name='delegate'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='5' name='context'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllWithDelegate:'>
+<arg declared_type='id' type='@' index='0' name='delegate'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_fetchAllWithDelegate:inContext:'>
+<arg declared_type='id' type='@' index='0' name='delegate'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSFetchedResultsController*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAll'>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllSortedBy:ascending:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllSortedBy:ascending:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllSortedBy:ascending:withPredicate:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllSortedBy:ascending:withPredicate:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='3' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findAllWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findByAttribute:withValue:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findByAttribute:withValue:andOrderBy:ascending:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findByAttribute:withValue:andOrderBy:ascending:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<arg declared_type='NSString*' type='@' index='2' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='3' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='4' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findByAttribute:withValue:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirst'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstByAttribute:withValue:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstByAttribute:withValue:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstOrderedByAttribute:ascending:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstOrderedByAttribute:ascending:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:andRetrieveAttributes:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSArray*' type='@' index='1' name='attributes'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:andRetrieveAttributes:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSArray*' type='@' index='1' name='attributes'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:sortedBy:ascending:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchterm'/>
+<arg declared_type='NSString*' type='@' index='1' name='property'/>
+<arg declared_type='BOOL' type='B' index='2' name='ascending'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' variadic='true' selector='MR_findFirstWithPredicate:sortedBy:ascending:andRetrieveAttributes:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='1' name='sortBy'/>
+<arg declared_type='BOOL' type='B' index='2' name='ascending'/>
+<arg declared_type='id' type='@' index='3' name='attributes'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_findFirstWithPredicate:sortedBy:ascending:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchterm'/>
+<arg declared_type='NSString*' type='@' index='1' name='property'/>
+<arg declared_type='BOOL' type='B' index='2' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='3' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' variadic='true' selector='MR_findFirstWithPredicate:sortedBy:ascending:inContext:andRetrieveAttributes:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSString*' type='@' index='1' name='sortBy'/>
+<arg declared_type='BOOL' type='B' index='2' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='3' name='context'/>
+<arg declared_type='id' type='@' index='4' name='attributes'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_hasAtLeastOneEntity'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='MR_hasAtLeastOneEntityInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='MR_importFromArray:'>
+<arg declared_type='NSArray*' type='@' index='0' name='listOfObjectData'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_importFromArray:inContext:'>
+<arg declared_type='NSArray*' type='@' index='0' name='listOfObjectData'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_importFromObject:'>
+<arg declared_type='id' type='@' index='0' name='data'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_importFromObject:inContext:'>
+<arg declared_type='id' type='@' index='0' name='data'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='MR_importValuesForKeysWithObject:'>
+<arg declared_type='id' type='@' index='0' name='objectData'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method selector='MR_inContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='otherContext'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='MR_inThreadContext'>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_numberOfEntities'>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method class_method='true' selector='MR_numberOfEntitiesWithContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method class_method='true' selector='MR_numberOfEntitiesWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method class_method='true' selector='MR_numberOfEntitiesWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSNumber*' type='@'/>
+</method>
+<method selector='MR_objectWithMinValueFor:'>
+<arg declared_type='NSString*' type='@' index='0' name='property'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='MR_objectWithMinValueFor:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='property'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method class_method='true' selector='MR_performFetch:'>
+<arg declared_type='NSFetchedResultsController*' type='@' index='0' name='controller'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_propertiesNamed:'>
+<arg declared_type='NSArray*' type='@' index='0' name='properties'/>
+<retval declared_type='NSArray*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAll'>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllSortedBy:ascending:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllSortedBy:ascending:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllSortedBy:ascending:withPredicate:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllSortedBy:ascending:withPredicate:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='sortTerm'/>
+<arg declared_type='BOOL' type='B' index='1' name='ascending'/>
+<arg declared_type='NSPredicate*' type='@' index='2' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='3' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllWhere:isEqualTo:'>
+<arg declared_type='NSString*' type='@' index='0' name='property'/>
+<arg declared_type='id' type='@' index='1' name='value'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllWhere:isEqualTo:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='property'/>
+<arg declared_type='id' type='@' index='1' name='value'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestAllWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestFirstByAttribute:withValue:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestFirstByAttribute:withValue:inContext:'>
+<arg declared_type='NSString*' type='@' index='0' name='attribute'/>
+<arg declared_type='id' type='@' index='1' name='searchValue'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='2' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestFirstWithPredicate:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_requestFirstWithPredicate:inContext:'>
+<arg declared_type='NSPredicate*' type='@' index='0' name='searchTerm'/>
+<arg declared_type='NSManagedObjectContext*' type='@' index='1' name='context'/>
+<retval declared_type='NSFetchRequest*' type='@'/>
+</method>
+<method class_method='true' selector='MR_setDefaultBatchSize:'>
+<arg declared_type='NSUInteger' type='I' index='0' name='newBatchSize'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_truncateAll'>
+<retval declared_type='BOOL' type='B'/>
+</method>
+<method class_method='true' selector='MR_truncateAllInContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='context'/>
+<retval declared_type='BOOL' type='B'/>
+</method>
+</class>
+<class name='NSManagedObjectContext'>
+<method class_method='true' selector='MR_context'>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method class_method='true' selector='MR_contextForCurrentThread'>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method class_method='true' selector='MR_contextWithParent:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='parentContext'/>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method class_method='true' selector='MR_contextWithStoreCoordinator:'>
+<arg declared_type='NSPersistentStoreCoordinator*' type='@' index='0' name='coordinator'/>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method class_method='true' selector='MR_defaultContext'>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method selector='MR_description'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='MR_initializeDefaultContextWithCoordinator:'>
+<arg declared_type='NSPersistentStoreCoordinator*' type='@' index='0' name='coordinator'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_newMainQueueContext'>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method selector='MR_observeContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='otherContext'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_observeContextOnMainThread:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='otherContext'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_observeiCloudChangesInCoordinator:'>
+<arg declared_type='NSPersistentStoreCoordinator*' type='@' index='0' name='coordinator'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_parentChain'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method class_method='true' selector='MR_resetContextForCurrentThread'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_resetDefaultContext'>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_rootSavingContext'>
+<retval declared_type='NSManagedObjectContext*' type='@'/>
+</method>
+<method selector='MR_save'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveInBackgroundCompletion:'>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='0' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveInBackgroundErrorHandler:'>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='0' name='errorCallback'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveInBackgroundErrorHandler:completion:'>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='0' name='errorCallback'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='1' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveNestedContexts'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveNestedContextsErrorHandler:'>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='0' name='errorCallback'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveNestedContextsErrorHandler:completion:'>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='0' name='errorCallback'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='1' name='completion'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveOnlySelfAndWait'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveOnlySelfWithCompletion:'>
+<arg declared_type='MRSaveCompletionHandler' type='@?' function_pointer='true' index='0' name='completion'>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveToPersistentStoreAndWait'>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveToPersistentStoreWithCompletion:'>
+<arg declared_type='MRSaveCompletionHandler' type='@?' function_pointer='true' index='0' name='completion'>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveWithErrorCallback:'>
+<arg declared_type='void (^)(NSError *)' type='@?' function_pointer='true' index='0' name='errorCallback'>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_saveWithOptions:completion:'>
+<arg declared_type='MRSaveContextOptions' type='I' index='0' name='mask'/>
+<arg declared_type='MRSaveCompletionHandler' type='@?' function_pointer='true' index='1' name='completion'>
+<arg declared_type='BOOL' type='B'/>
+<arg declared_type='NSError*' type='@'/>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_setWorkingName:'>
+<arg declared_type='NSString*' type='@' index='0' name='MR_workingName'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_stopObservingContext:'>
+<arg declared_type='NSManagedObjectContext*' type='@' index='0' name='otherContext'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_stopObservingiCloudChangesInCoordinator:'>
+<arg declared_type='NSPersistentStoreCoordinator*' type='@' index='0' name='coordinator'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_workingName'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='NSManagedObjectModel'>
+<method class_method='true' selector='MR_defaultManagedObjectModel'>
+<retval declared_type='NSManagedObjectModel*' type='@'/>
+</method>
+<method class_method='true' selector='MR_managedObjectModelNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='modelFileName'/>
+<retval declared_type='NSManagedObjectModel*' type='@'/>
+</method>
+<method class_method='true' selector='MR_mergedObjectModelFromMainBundle'>
+<retval declared_type='NSManagedObjectModel*' type='@'/>
+</method>
+<method class_method='true' selector='MR_newManagedObjectModelNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='modelFileName'/>
+<retval declared_type='NSManagedObjectModel*' type='@'/>
+</method>
+<method class_method='true' selector='MR_newModelNamed:inBundleNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='modelName'/>
+<arg declared_type='NSString*' type='@' index='1' name='bundleName'/>
+<retval declared_type='NSManagedObjectModel*' type='@'/>
+</method>
+<method class_method='true' selector='MR_setDefaultManagedObjectModel:'>
+<arg declared_type='NSManagedObjectModel*' type='@' index='0' name='newDefaultModel'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='NSNumber'>
+<method selector='MR_lookupKeyForAttribute:'>
+<arg declared_type='NSAttributeDescription*' type='@' index='0' name='attributeInfo'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='MR_relatedValueForRelationship:'>
+<arg declared_type='NSRelationshipDescription*' type='@' index='0' name='relationshipInfo'/>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='NSObject'>
+<method selector='MR_lookupKeyForAttribute:'>
+<arg declared_type='NSAttributeDescription*' type='@' index='0' name='attributeInfo'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='MR_lookupKeyForRelationship:'>
+<arg declared_type='NSRelationshipDescription*' type='@' index='0' name='relationshipInfo'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method selector='MR_relatedValueForRelationship:'>
+<arg declared_type='NSRelationshipDescription*' type='@' index='0' name='relationshipInfo'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method selector='MR_valueForAttribute:'>
+<arg declared_type='NSAttributeDescription*' type='@' index='0' name='attributeInfo'/>
+<retval declared_type='id' type='@'/>
+</method>
+</class>
+<class name='NSPersistentStore'>
+<method class_method='true' selector='MR_cloudURLForUbiqutiousContainer:'>
+<arg declared_type='NSString*' type='@' index='0' name='bucketName'/>
+<retval declared_type='NSURL*' type='@'/>
+</method>
+<method class_method='true' selector='MR_defaultLocalStoreUrl'>
+<retval declared_type='NSURL*' type='@'/>
+</method>
+<method class_method='true' selector='MR_defaultPersistentStore'>
+<retval declared_type='NSPersistentStore*' type='@'/>
+</method>
+<method class_method='true' selector='MR_setDefaultPersistentStore:'>
+<arg declared_type='NSPersistentStore*' type='@' index='0' name='store'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_urlForStoreName:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeFileName'/>
+<retval declared_type='NSURL*' type='@'/>
+</method>
+</class>
+<class name='NSPersistentStoreCoordinator'>
+<method selector='MR_addAutoMigratingSqliteStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeFileName'/>
+<retval declared_type='NSPersistentStore*' type='@'/>
+</method>
+<method selector='MR_addInMemoryStore'>
+<retval declared_type='NSPersistentStore*' type='@'/>
+</method>
+<method selector='MR_addSqliteStoreNamed:withOptions:'>
+<arg declared_type='id' type='@' index='0' name='storeFileName'/>
+<arg declared_type='NSDictionary*' type='@' index='1' name='options'/>
+<retval declared_type='NSPersistentStore*' type='@'/>
+</method>
+<method selector='MR_addiCloudContainerID:contentNameKey:localStoreNamed:cloudStorePathComponent:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='subPathComponent'/>
+<retval declared_type='void' type='v'/>
+</method>
+<method selector='MR_addiCloudContainerID:contentNameKey:localStoreNamed:cloudStorePathComponent:completion:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='subPathComponent'/>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='4' name='completionBlock'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='void' type='v'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithAutoMigratingSqliteStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeFileName'/>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithInMemoryStore'>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithPersistentStore:'>
+<arg declared_type='NSPersistentStore*' type='@' index='0' name='persistentStore'/>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithSqliteStoreNamed:'>
+<arg declared_type='NSString*' type='@' index='0' name='storeFileName'/>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithiCloudContainerID:contentNameKey:localStoreNamed:cloudStorePathComponent:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='subPathComponent'/>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_coordinatorWithiCloudContainerID:contentNameKey:localStoreNamed:cloudStorePathComponent:completion:'>
+<arg declared_type='NSString*' type='@' index='0' name='containerID'/>
+<arg declared_type='NSString*' type='@' index='1' name='contentNameKey'/>
+<arg declared_type='NSString*' type='@' index='2' name='localStoreName'/>
+<arg declared_type='NSString*' type='@' index='3' name='subPathComponent'/>
+<arg declared_type='void (^)(void)' type='@?' function_pointer='true' index='4' name='completionHandler'>
+<retval declared_type='void' type='v'/>
+</arg>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_defaultStoreCoordinator'>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_newPersistentStoreCoordinator'>
+<retval declared_type='NSPersistentStoreCoordinator*' type='@'/>
+</method>
+<method class_method='true' selector='MR_setDefaultStoreCoordinator:'>
+<arg declared_type='NSPersistentStoreCoordinator*' type='@' index='0' name='coordinator'/>
+<retval declared_type='void' type='v'/>
+</method>
+</class>
+<class name='NSRelationshipDescription'>
+<method selector='MR_primaryKey'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<class name='NSString'>
+<method selector='MR_capitalizedFirstCharacterString'>
+<retval declared_type='NSString*' type='@'/>
+</method>
+</class>
+<informal_protocol name='MagicalRecord_DataImport'>
+<method type='@12@0:4@8' selector='MR_lookupKeyForAttribute:'>
+<arg declared_type='NSAttributeDescription*' type='@' index='0' name='attributeInfo'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method type='@12@0:4@8' selector='MR_lookupKeyForRelationship:'>
+<arg declared_type='NSRelationshipDescription*' type='@' index='0' name='relationshipInfo'/>
+<retval declared_type='NSString*' type='@'/>
+</method>
+<method type='@12@0:4@8' selector='MR_relatedValueForRelationship:'>
+<arg declared_type='NSRelationshipDescription*' type='@' index='0' name='relationshipInfo'/>
+<retval declared_type='id' type='@'/>
+</method>
+<method type='@12@0:4@8' selector='MR_valueForAttribute:'>
+<arg declared_type='NSAttributeDescription*' type='@' index='0' name='attributeInfo'/>
+<retval declared_type='id' type='@'/>
+</method>
+</informal_protocol>
+</signatures>
