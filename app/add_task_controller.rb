@@ -1,12 +1,32 @@
-class UIBoundTextField < UITextField
-  attr_reader :field_name
+class UITextFieldBinding < NSObject
+  def initialize(model, ui_field, field_name)
+    @model=model
+    @field_name=field_name
+    self.ui_field=ui_field
+  end
 
-  def initWithFrameAndFieldName(bounds, fieldName: fieldName)
-    self.initWithFrame(bounds)
-    @field_name=fieldName
-    self
+  def ui_field=(val)
+    @ui_field=val
+    @ui_field.delegate=self
+    @ui_field.text=@model.send(@field_name)
+  end
+
+  def model=(val)
+    @model=val
+    @ui_field.text=@model.send(@field_name)
+  end
+
+  def update(ui_field, model)
+    self.ui_field=ui_field
+    self.model=model
 
   end
+
+
+  def textFieldDidEndEditing(textField)
+    @model.send("#{@field_name}=", textField.text)
+  end
+
 
 end
 
@@ -18,7 +38,6 @@ class AddTaskController < UIViewController
   def viewDidLoad
     super
 
-
     @table=UITableView.alloc.initWithFrame(self.view.bounds, style: UITableViewStyleGrouped)
     @table.dataSource=self
     @table.delegate=self
@@ -27,9 +46,34 @@ class AddTaskController < UIViewController
 
 
     @date_picker=UIDatePicker.alloc.initWithFrame([[0,self.view.bounds.size.height], [0,0]])
+    @date_picker.datePickerMode=UIDatePickerModeDate
     @date_picker.addTarget(self, action: 'dateChanged:', forControlEvents: UIControlEventValueChanged)
     view.addSubview(@date_picker)
 
+
+  end
+
+  def setup(mode, task)
+    @saved=FALSE
+    @mode=mode
+    @task=task
+
+  end
+  def viewWillDisappear(animated)
+    toggleDatePicker() if @is_date_picker_visible
+    @task.MR_deleteEntity if self.mode=='new' && !@saved
+    @task.autorelease
+    # discard object if new not saved
+
+
+    super
+
+  end
+
+  def viewWillAppear(animated)
+    super
+    self.title= self.mode == 'new' ? "Add Task" : "Edit Task"
+    @table.reloadData()
 
   end
 
@@ -51,14 +95,6 @@ class AddTaskController < UIViewController
     return @task
   end
 
-  def textFieldDidEndEditing(textField)
-    @task.send("#{textField.field_name}=", textField.text)
-  end
-
-
-
-
-
 
   def tableView(tableView, cellForRowAtIndexPath: index_path)
     field_set = Fields[index_path.row]
@@ -79,18 +115,22 @@ class AddTaskController < UIViewController
 
     if @selected_field_set[:type]==:date
       self.view.endEditing(true)
-      UIView.animateWithDuration(0.3,
-                                 animations: lambda {
-                                   @date_picker.frame=[[0,self.view.bounds.size.height-@date_picker.bounds.size.height],[0,0]]
-                                 }
-      )
-    else
-      UIView.animateWithDuration(0.3,
-                                 animations: lambda {
-                                   @date_picker.frame=[[0,self.view.bounds.size.height],[0,0]]
-                                 }
-      )
+      value=@task.send(@selected_field_set[:name])
+      @date_picker.date=value unless value.nil?
+    end
+    toggleDatePicker()
 
+  end
+
+  def toggleDatePicker
+    animate_appear=lambda { @date_picker.frame=[[0,self.view.bounds.size.height],[0,0]] }
+    animate_disappear=lambda { @date_picker.frame=[[0, self.view.bounds.size.height-@date_picker.bounds.size.height], [0, 0]] }
+    if @is_date_picker_visible
+      UIView.animateWithDuration(0.3, animations: animate_appear)
+      @is_date_picker_visible=false
+    else
+      UIView.animateWithDuration(0.3, animations: animate_disappear)
+      @is_date_picker_visible=true
     end
 
   end
@@ -99,22 +139,28 @@ class AddTaskController < UIViewController
   def create_or_update_field(field_set, cell)
     ui_field=nil
     bounds=get_detail_view_bounds(cell)
+    ap field_set
 
     cell.textLabel.text=field_set[:label]
 
-    if field_set[:type]==:text
-      ui_field=cell.contentView.viewWithTag(99)
-      if ui_field.nil?
-        ui_field=UIBoundTextField.alloc.initWithFrameAndFieldName(bounds, fieldName: field_set[:name])
-        cell.selectionStyle=UITableViewCellSelectionStyleNone
-        ui_field.delegate=self
-        ui_field.tag=99
-        cell.contentView.addSubview(ui_field)
-      end
-      ui_field.text=@task.send(field_set[:name])
-    elsif field_set[:type]==:date
-      value=@task.send(field_set[:name])
-      cell.detailTextLabel.text=value.string_with_style unless value.nil?
+    case field_set[:type]
+      when :text
+        ui_field=cell.contentView.viewWithTag(99)
+        if ui_field.nil?
+          ui_field=UITextField.alloc.initWithFrame(bounds)
+          cell.selectionStyle=UITableViewCellSelectionStyleNone
+          ui_field.tag=99
+          @bindings[field_set[:name]]=UITextFieldBinding.new(@task, ui_field, field_set[:name])
+          cell.contentView.addSubview(ui_field)
+        else
+          binding=@bindings[field_set[:name]]
+          binding.update(ui_field, @task)
+
+        end
+      when :date
+        value=@task.send(field_set[:name])
+        cell.detailTextLabel.text=value.nil? ? "" : value.string_with_style
+
     end
 
     ui_field
@@ -132,9 +178,13 @@ class AddTaskController < UIViewController
 
     self.view.endEditing(true)
 
-    MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait(lambda do |local_context|
-      local_context.save
-    end)
+    saveHook= lambda do |local_context|
+          local_context.save
+        end
+
+    MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait(saveHook)
+
+    @saved=true
 
     self.navigationController.popViewControllerAnimated(true)
 
@@ -142,10 +192,9 @@ class AddTaskController < UIViewController
 
   def initWithNibName(name, bundle: bundle)
     super
-    self.mode ||='new'
-    self.title= self.mode == 'new' ? "Add Task" : "Edit Task"
     saveTaskButton= UIBarButtonItem.alloc.initWithTitle("Save", style: UIBarButtonSystemItemSave, target: self, action: 'saveTask')
     self.navigationItem.rightBarButtonItem=saveTaskButton
+    @bindings={}
     self
   end
 

@@ -4,7 +4,7 @@ class TasksController < UIViewController
 
     @tasks=Task.MR_findAll
 
-    @table = UITableView.alloc.initWithFrame(view.bounds)
+    @table = UITableView.alloc.init
 
     @table.dataSource=self
     @table.delegate=self
@@ -13,6 +13,7 @@ class TasksController < UIViewController
 
   def viewWillAppear(animated)
     super
+    @table.frame=view.bounds
     @tasks=Task.MR_findAll
     @table.reloadData()
 
@@ -37,18 +38,18 @@ class TasksController < UIViewController
   end
 
   def tableView(tableView, didSelectRowAtIndexPath:index_path)
-    @add_task_controller=AddTaskController.alloc.initWithNibName(nil, bundle: nil)
-    @add_task_controller.task=@tasks[index_path.row]
-    @add_task_controller.mode="edit"
+    @add_task_controller||=AddTaskController.alloc.initWithNibName(nil, bundle: nil)
+    @add_task_controller.setup("edit", @tasks[index_path.row])
     self.navigationController.pushViewController(@add_task_controller, animated: true)
   end
 
 
 
   def addTask
-    @add_task_controller=AddTaskController.alloc.initWithNibName(nil, bundle: nil)
-    @add_task_controller.task=Task.MR_createEntity
+    @add_task_controller||=AddTaskController.alloc.initWithNibName(nil, bundle: nil)
+    @add_task_controller.setup('new', Task.MR_createEntity)
     self.navigationController.pushViewController(@add_task_controller, animated: true)
+
   end
 
 
