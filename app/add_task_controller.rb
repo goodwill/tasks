@@ -24,6 +24,7 @@ class UITextFieldBinding < NSObject
 
 
   def textFieldDidEndEditing(textField)
+    puts "textFieldDidEndEditing"
     @model.send("#{@field_name}=", textField.text)
   end
 
@@ -58,12 +59,25 @@ class AddTaskController < UIViewController
     @mode=mode
     @task=task
 
+
   end
   def viewWillDisappear(animated)
     toggleDatePicker() if @is_date_picker_visible
-    @task.MR_deleteEntity if self.mode=='new' && !@saved
-    @task.autorelease
-    # discard object if new not saved
+    ap @task
+
+    self.view.endEditing(true)
+
+    unless @saved
+      if self.mode=='new'
+        @task.MR_deleteEntity
+      else
+        NSManagedObjectContext.MR_defaultContext.rollback
+      end
+    end
+
+    ap @task
+
+
 
 
     super
@@ -178,11 +192,8 @@ class AddTaskController < UIViewController
 
     self.view.endEditing(true)
 
-    saveHook= lambda do |local_context|
-          local_context.save
-        end
+    NSManagedObjectContext.MR_defaultContext.MR_saveToPersistentStoreAndWait()
 
-    MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait(saveHook)
 
     @saved=true
 

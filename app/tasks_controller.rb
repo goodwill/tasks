@@ -1,9 +1,6 @@
 class TasksController < UIViewController
   def viewDidLoad
     super
-
-    @tasks=Task.MR_findAll
-
     @table = UITableView.alloc.init
 
     @table.dataSource=self
@@ -16,6 +13,7 @@ class TasksController < UIViewController
     @table.frame=view.bounds
     @tasks=Task.MR_findAll
     @table.reloadData()
+    puts "data reloaded"
 
   end
 
